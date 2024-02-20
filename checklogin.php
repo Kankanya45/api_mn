@@ -1,5 +1,5 @@
 <?php
-include 'conn.php';
+include "../conn.php";
 
 // Ensure the request method is POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $xok = 401;
 
     // Get user input
-    $email = mysqli_real_escape_string($conn, $_POST['username']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     // Use prepared statement to prevent SQL injection
     $stmt = mysqli_prepare($conn, "SELECT * FROM user WHERE username = ? AND password = ?");
-    mysqli_stmt_bind_param($stmt, "ss", $email, $password);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $password);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 

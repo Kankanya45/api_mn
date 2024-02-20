@@ -13,7 +13,7 @@ $response = array();
 switch ($xcase) {
     case '1': // insert
         // Retrieve the maximum id_car from the database
-        $sqlMaxId = "SELECT MAX(id_car) AS MAX_ID FROM tram_data";
+        $sqlMaxId = "SELECT MAX(id_car) AS MAX_ID FROM Tram_data";
         $resultMaxId = mysqli_query($conn, $sqlMaxId) or die(mysqli_error($conn));
         $maxId = 1; // Default value
 
@@ -26,7 +26,7 @@ switch ($xcase) {
         // Increment the maxId for the new record
         $id_car = $maxId;
 
-        $sql = "INSERT INTO tram_data (id_car, numbers_car)
+        $sql = "INSERT INTO Tram_data (id_car, numbers_car)
                 VALUES (?, ?)";
 
         $stmt = mysqli_prepare($conn, $sql);
@@ -44,7 +44,7 @@ switch ($xcase) {
         break;
 
     case '2': // update
-        $sql = "UPDATE tram_data
+        $sql = "UPDATE Tram_data
                 SET numbers_car=?
                 WHERE id_car=?";
 
@@ -63,7 +63,7 @@ switch ($xcase) {
         break;
 
     case '3': // delete
-        $sql = "DELETE FROM tram_data WHERE id_car=?";
+        $sql = "DELETE FROM Tram_data WHERE id_car=?";
 
         $stmt = mysqli_prepare($conn, $sql);
         mysqli_stmt_bind_param($stmt, 's', $id_car);
